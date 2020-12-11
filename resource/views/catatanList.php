@@ -230,7 +230,7 @@ $catatan = query("SELECT * FROM catatan");
                             <td data-label ="Nominal"><?= $cat["nominal"] ?></td>
                             <td data-label ="Keterangan"><?= $cat["keterangan"] ?></td>
                             <td data-label ="Aksi">
-                                <a href="hapusCatatan.php?id_catatan=<?= $cat["id_catatan"]; ?>"><i class="fas fa-trash-alt fa-1x"></i>  Hapus</a>
+                                <a href="../../aplikasi/hapusCatatan.php?id_catatan=<?= $cat["id_catatan"]; ?>"><i class="fas fa-trash-alt fa-1x"></i>  Hapus</a>
                                 <a href="form/catataneditForm.php?id_catatan=<?= $cat["id_catatan"]; ?>"><i class="fas fa-edit fa-1x"></i>  Edit</a>
                             </td>
                         </tr>

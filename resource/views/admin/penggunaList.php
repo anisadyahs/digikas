@@ -182,7 +182,7 @@ $users = query("SELECT * FROM pengguna");
                             <td data-label ="No"><?= $i?></td>
                             <td data-label ="Email"><?= $user["email"] ?></td>
                             <td data-label ="Username"><?= $user["username"] ?></td>
-                            <td data-label ="Aksi"><a href="hapusPengguna.php?email=<?= $user["email"]; ?>"><i class="fas fa-trash-alt fa-1x"></i> Hapus</a></td>
+                            <td data-label ="Aksi"><a href="../../../aplikasi/hapusPengguna.php?email=<?= $user["email"]; ?>"><i class="fas fa-trash-alt fa-1x"></i> Hapus</a></td>
                         </tr>
                         <?php $i++ ?>
                         <?php  endforeach; ?>

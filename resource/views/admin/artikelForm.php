@@ -292,7 +292,7 @@ if (isset ($_POST["submit"])){
                        <!--Main contain of page-->
                    <div class="main-container">
                         <button class="back"><a href="artikelList.php">Kembali</a></button> <br><br><br>
-                        <h3>Buat Rencana Keuangan Baru<h3>
+                        <h3>Tambah Artikel Baru<h3>
                         <br><br>    
                         <form class="form" action="" method="post" enctype="multipart/form-data">
                                     <label for="title">Judul</label><br>

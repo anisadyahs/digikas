@@ -24,7 +24,7 @@ function tambah($data){
 
     $query = "INSERT INTO rencana
     VALUES
-    ('', '$nama',$jskrg, $jumlah, '$tenggat')
+    ('', '$nama',$jskrg, $jumlah, '$tenggat', '')
     ";
     mysqli_query($koneksi, $query);
     

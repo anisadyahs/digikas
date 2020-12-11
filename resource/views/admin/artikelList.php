@@ -205,7 +205,7 @@ $artikel = query("SELECT * FROM artikel");
                             <td data-label ="Judul"><?= $arti["judul"] ?></td>
                             <td data-label ="Tanggal"><?= $arti["tanggal"] ?></td>
                             <td data-label ="Penulis"><?= $arti["penulis"] ?></td>
-                            <td data-label ="Aksi"><a href="hapusArtikel.php?id_artikel=<?= $arti["id_artikel"]; ?>"><i class="fas fa-trash-alt fa-1x"></i>  Hapus</a></td>
+                            <td data-label ="Aksi"><a href="../../../aplikasi/hapusArtikel.php?id_artikel=<?= $arti["id_artikel"]; ?>"><i class="fas fa-trash-alt fa-1x"></i>  Hapus</a></td>
                         </tr>
                         <?php $i++ ?>
                         <?php  endforeach; ?>

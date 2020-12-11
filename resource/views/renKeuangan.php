@@ -215,7 +215,7 @@ $rencana = query("SELECT * FROM rencana");
                         <?php foreach($rencana as $renc) : ?>
                         <div class="plan-card">
                             <div class="action">
-                                <div><a  href="hapusRencana.php?id_rencana=<?= $renc["id_rencana"]; ?>"><i class="fas fa-trash-alt fa-1x"></i></a></div>
+                                <div><a  href="../../aplikasi/hapusRencana.php?id_rencana=<?= $renc["id_rencana"]; ?>"><i class="fas fa-trash-alt fa-1x"></i></a></div>
                                 <div><a href="form/rencanaeditForm.php?id_rencana=<?= $renc["id_rencana"]; ?>"><i class="fas fa-edit fa-1x"></i></a></div>
                              </div>
                              <h4><?= $renc["n_rencana"] ?></h4>
