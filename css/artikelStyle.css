@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/*.container{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+*/
+.inner-container{
+    position: relative; 
+    height: 100%;
+    width: 100%;
+    display: flex;  
+}
+
+.menu-container{
+    position: relative;
+}
+
+.menu p{
+    margin-top: 20px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    color: #3E4155;
+}
+
+.backdrop{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: auto;
+}
+
+.menu-bar{
+
+    width: 265px; 
+    height: 100vh;
+    position: fixed;
+    border-right: 1px solid rgba(179, 188, 245, 0.7); 
+    z-index: 1;
+    overflow-x: hidden;
+    background: white; 
+    top:0;
+    left:0;
+    transition: all 0.2s ease;
+}
+
+.menu{
+    margin-left: 15px;
+}
+
+.menu h3{
+    margin-top: 30px;
+}
+
+.menu p{
+    text-align: center;
+}
+
+.menu li{
+    list-style: none;
+    font-size: 14px; 
+    padding-right: 15px;   
+}
+
+.menu li .menu-icon{
+    display: inline-block;
+    width: 25px;
+}
+
+.menu li .menu-desk{
+    display: inline-block;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.menu li a{
+    display: block;
+    padding: 20px;
+    letter-spacing: 0.03em;
+    color: #202E78;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.menu li a .icon{
+    display: inline-block;
+    width: 25px;
+
+}
+
+.menu-bar .menu li a:hover,
+.menu-bar .menu li a.active{
+    background: #202E78;
+    color: #fff;
+}
+
+.page-container{
+    margin-top: 10px;
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    transition: all 0.2s ease;
+
+}
+
+.page-container .header{
+    display: inline-flex;
+    margin-left: 5px;
+
+}
+
+.page-container .menu-button{
+    color: #202E78;
+    cursor: pointer;
+    font-size: 25px;
+    margin-right: 25px;
+    margin-top: 15px;
+    display: none;
+}
+
+.profile img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    margin-top: 10px;
+    border-radius: 50px;
+    border: 0.01em solid #3E4155;
+}
+
+.profile p{
+    text-align: center;
+    letter-spacing: 5%;
+    font-size: 13px;
+    color:  #3E4155;
+}
+
+.profile{
+    width: 50px;
+    height: 75px;
+    border-radius: 20px;
+    background: #F4F5FA;
+    align-items: center;
+}
+
+.title-page p{
+    font-weight: 550;
+    font-size: 19px;
+    letter-spacing: 0.05em;
+    margin-top: 20px;
+    margin-bottom: 28px;
+    width: 1000px;
+    height: 75px;
+    color: #3E4155;
+}
+
+
+.page-container .main-container {
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+}
+
+.main-container li{
+    list-style: none;
+}
+
+.main-container .card{
+    width: 1040px;
+    height: 150px;
+    border-radius: 20px;
+    border: 1px solid rgba(179, 188, 245, 0.7);
+    display: inline-flex;
+    flex-flow: row;
+}
+
+.main-container img{
+    width: 250px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 1px;
+}
+
+.main-container .article-description{
+    margin-top: 20px;
+    color: #3E4155;
+    letter-spacing: 0.05em;
+}
+
+.article-description h3{
+    padding-bottom: 15px;
+}
+
+@media screen and (max-width: 1024px){
+
+    .header .menu-button{
+        display: inline-block;
+    }
+
+    .menu-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        
+    }
+
+    .menu-bar{
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transition: left 0.2s linear; 
+    }
+
+    
+    .container.active .menu-container{
+        visibility: visible;
+    }
+
+    .container.active .menu-bar{
+        left: 0;
+        transition: left 0.2s linear;
+    }
+
+    .container.active .backdrop{
+        visibility: visible;
+        opacity: 0.7
+    }
+
+    .page-container{
+        width: 100%;
+        margin-left:15px;
+    }
+
+    .title-page p{
+        width: 785px;
+
+    }
+
+    .main-container .card{
+        width: 875px;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+   
+    .header .menu-button{
+        display: inline-block;
+    }
+
+
+    .page-container .title-page p{
+       width: 555px; 
+
+    }
+
+    .menu-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        
+    }
+
+    .main-container .card{
+        width: 650px;
+    }
+
+    .main-container img{
+        width: 150px;
+        
+    }
+
+    .menu-bar{
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transition: left 0.2s linear; 
+    }
+
+    
+    .container.active .menu-container{
+        visibility: visible;
+    }
+
+    .container.active .menu-bar{
+        left: 0;
+        transition: left 0.2s linear;
+    }
+
+    .container.active .backdrop{
+        visibility: visible;
+        opacity: 0.7
+    }
+
+}
+
+
+
+@media screen and (max-width: 600px){
+
+    .header .menu-button{
+        display: inline-block;
+    }
+
+
+    .page-container .title-page p{
+       width: 360px; 
+    }
+
+    .menu-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        
+    }
+
+    .main-container .card{
+        width: 445px;
+    }
+
+    .main-container img{
+        width: 150px;
+        
+    }
+
+    .menu-bar{
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transition: left 0.2s linear; 
+    }
+
+
+    .container.active .menu-container{
+        visibility: visible;
+    }
+
+    .container.active .menu-bar{
+        left: 0;
+        transition: left 0.2s linear;
+    }
+
+    .container.active .backdrop{
+        visibility: visible;
+        opacity: 0.7
+    }
+}
+
+
+@media screen and (max-width: 400px){
+
+    .header .menu-button{
+        display: inline-block;
+    }
+
+
+    .page-container .title-page p{
+       width: 270px; 
+    }
+
+    .menu-container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        
+    }
+
+    .main-container .card{
+        width: 345px;
+    }
+
+    .main-container img{
+        width: 120px;
+        height: 50px;
+        margin-top: 50px;
+        align-items: middle;
+        
+    }
+
+    .main-container h3{
+        font-size: 15px;
+    }
+
+    .main-container p{
+        font-size: 12px;
+    }
+
+    .menu-bar{
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transition: left 0.2s linear; 
+    }
+
+    
+
+    .container.active .menu-container{
+        visibility: visible;
+    }
+
+    .container.active .menu-bar{
+        left: 0;
+        transition: left 0.2s linear;
+    }
+
+    .container.active .backdrop{
+        visibility: visible;
+        opacity: 0.7
+    }
+}
