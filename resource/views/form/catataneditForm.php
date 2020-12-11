@@ -1,15 +1,16 @@
 <?php
+
 session_start();
 
 if( !isset($_SESSION["login"]) ){
     header("Location: userLogin.php");
     exit;
 }
-    require '../../../aplikasi/rencanaController.php';
+    require '../../../aplikasi/catatanController.php';
 
-    $id = $_GET["id_rencana"];
+    $id = $_GET["id_catatan"];
 
-    $rencana = query("SELECT * FROM rencana WHERE id_rencana = $id")[0];
+    $catatan = query("SELECT * FROM catatan WHERE id_catatan = $id")[0];
 
 
     if (isset ($_POST["submit"])){
@@ -17,14 +18,14 @@ if( !isset($_SESSION["login"]) ){
            echo "
             <script> 
                 alert('Data berhasil diubah!');
-                document.location.href = '../renKeuangan.php'
+                document.location.href = '../catatanList.php'
             </script>
            ";
        } else {
            echo "
            <script> 
                 alert('Data tidak berhasil diubah!');
-                document.location.href = 'rencanaeditForm.php'
+                document.location.href = 'catataneditForm.php'
             </script>
            ";
        }
@@ -32,7 +33,6 @@ if( !isset($_SESSION["login"]) ){
     }
 
 ?>
-
 
 <!DOCTYPE html>
 
@@ -107,11 +107,11 @@ if( !isset($_SESSION["login"]) ){
             h3{
                 color: #3E4155;
             }
-            .form-plan{
+            .form-note{
                 width: 1035px;
             }  
             
-            .form-plan label{
+            .form-note label{
                 font-size: 14px;
                 font-weight: 400;
                 letter-spacing: 0.05em;
@@ -123,6 +123,19 @@ if( !isset($_SESSION["login"]) ){
                 margin: 10px 0;
                 border-radius: 10px;
                 border: 1px solid rgba(179, 188, 245, 0.7);
+            }
+
+            .field-input select{
+                width: 1015px;
+                height:40px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background: none;
+                outline: none;
+                border: none;
+                font-family: 'Montserrat', sans-serif;
+                letter-spacing: 0.05em;
+                color:  #3E4155;
             }
 
             .field-input input{
@@ -140,7 +153,7 @@ if( !isset($_SESSION["login"]) ){
 
 
             @media screen and (max-width: 1024px){
-                .form-plan{
+                .form-note{
                     width: 880px;
                 }
     
@@ -153,10 +166,15 @@ if( !isset($_SESSION["login"]) ){
                     height: 40px;
                 }
 
+                .field-input select{
+                 width: 860px;
+                height:40px;
+                }
+
             }
 
             @media screen and (max-width: 768px){
-                .form-plan{
+                .form-note{
                     width: 645px;
                 }
 
@@ -168,12 +186,16 @@ if( !isset($_SESSION["login"]) ){
                     width: 625px;
                     height: 40px;
                 }
+                .field-input select{
+                    width: 625px;
+                    height:40px;
+                }
             }
             @media screen and (max-width: 600px){
                 h3 {
                     font-size: 16px;
                 }
-                .form-plan{
+                .form-note{
                     width: 450px;
                 }
     
@@ -184,6 +206,11 @@ if( !isset($_SESSION["login"]) ){
                 .field-input input{
                     width: 430px;
                     height: 40px;
+                }
+
+                .field-input select{
+                    width: 430px;
+                    height:40px;
                 }
             }
 
@@ -215,13 +242,13 @@ if( !isset($_SESSION["login"]) ){
                                    </span>
                                <br>
                                </a></li>
-                               <li><a href="../catatanList.php">
+                               <li><a href="../catatanList" class="active">
                                    <span class="menu-icon"><i class="fas fa-book-open fa-2x"></i></span>
                                    <span class="menu-desk">
                                        Catatan keuangan
                                    </span>
                                </a></li>
-                               <li><a href="../renKeuangan.php" class="active">
+                               <li><a href="../renKeuangan.php">
                                    <span class="menu-icon"><i class="fas fa-tasks fa-2x"></i></span>
                                    <span class="menu-desk">
                                    Rencana keuangan
@@ -252,7 +279,7 @@ if( !isset($_SESSION["login"]) ){
                    <div class="header">
                        <div class="menu-button"> <i class="fas fa-bars"></i> </div>
                        <div class="title-page">
-                           <p>Rencana Keuangan</p>
+                           <p>Catatan Keuangan</p>
                        </div>
                        <div class="profile">
                            <img src="../../../image/man.svg">
@@ -262,27 +289,32 @@ if( !isset($_SESSION["login"]) ){
    
                        <!--Main contain of page-->
                    <div class="main-container">
-                        <button class="back"><a href="../renKeuangan.php">Kembali</a></button> <br><br><br>
-                        <h3>Edit Rencana Keuangan<h3>
-                        <br><br>    
-                        <form class="form-plan" action="" method="post">
-                        <input class="input" type="hidden" name="id-rencana" id="id-rencana" required value="<?= $rencana["id_rencana"]; ?>">
-                                    <label for="n-target">Nama rencana</label><br>
+                        <button class="back"><a href="../catatanList.php">Kembali</a></button> <br><br><br>
+                        <h3>Tambah Catatan Keuangan <h3>
+                        <br><br>  
+                        <form class="form-note" action="" method="post">
+                        <input class="input" type="hidden" name="id-catatan" id="id-catatan" required value="<?= $catatan["id_catatan"]; ?>">  
+                        <input class="input" type="hidden" name="id-pengguna" id="id-pengguna" required value="<?= $catatan["id_pengguna"]; ?>">  
+                                    <label for="tanggal">Tanggal</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="n-target" id="n-target" placeholder="mis. Dana darurat" required value="<?= $rencana["n_rencana"]; ?>">
+                                        <input class="input" type="date" name="tanggal" value="<?= $catatan["tanggal_cat"]; ?>" id="tanggal"  required>
                                     </div>
-                                    <label for="j-target">Nominal target</label><br>
+                                    <label for="jenis">Jenis</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="j-target" id="j-target" placeholder="mis. 11000000" required value="<?= $rencana["n_target"]; ?>">
+                                        <select class="input" type="text" name="jenis" id="jenis" value="<?= $catatan["jenis"]; ?>"  required>
+                                            <option value="Pemasukan">Pemasukan</option>
+                                            <option value="Pengeluaran">Pengeluaran</option>
+                                        </select>
                                     </div>
-                                    <label for="n-skrg">Nominal sekarang</label><br>
+                                    <label for="nominal">Nominal</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="n-skrg" id="n-skrg" placeholder="mis. 2000000" required value="<?= $rencana["n_skrg"]; ?>">
+                                        <input class="input" type="text" name="nominal" id="nominal" value="<?= $catatan["nominal"]; ?>"  required>
                                     </div>
-                                    <label for="t-target">Tenggat waktu</label><br>
+                                    <label for="keterangan">Keterangan</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="date" name="t-target"  id="t-target" placeholder="mis. 01-03-2021" required value="<?= $rencana["t_target"]; ?>">
+                                        <input class="input" type="text" name="keterangan" id="keterangan"  value="<?= $catatan["keterangan"]; ?>" required>
                                     </div>
+                                    
                                         <button class="button" name ="submit" type="submit">Edit</button>
                         </form>
                         

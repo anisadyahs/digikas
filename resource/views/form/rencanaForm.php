@@ -211,7 +211,7 @@ if( !isset($_SESSION["login"]) ){
                                    </span>
                                <br>
                                </a></li>
-                               <li><a href="#">
+                               <li><a href="../catatanList.php">
                                    <span class="menu-icon"><i class="fas fa-book-open fa-2x"></i></span>
                                    <span class="menu-desk">
                                        Catatan keuangan

@@ -1,38 +1,35 @@
 <?php
+
 session_start();
 
 if( !isset($_SESSION["login"]) ){
     header("Location: userLogin.php");
     exit;
 }
-    require '../../../aplikasi/rencanaController.php';
 
-    $id = $_GET["id_rencana"];
-
-    $rencana = query("SELECT * FROM rencana WHERE id_rencana = $id")[0];
-
+    require '../../../aplikasi/catatanController.php';
 
     if (isset ($_POST["submit"])){
-       if( edit($_POST) > 0){
+       if( tambah($_POST) > 0){
            echo "
             <script> 
-                alert('Data berhasil diubah!');
-                document.location.href = '../renKeuangan.php'
+                alert('Data berhasil ditambahkan!');
+                document.location.href = '../catatanList.php'
             </script>
            ";
        } else {
            echo "
            <script> 
-                alert('Data tidak berhasil diubah!');
-                document.location.href = 'rencanaeditForm.php'
+                alert('Data tidak berhasil ditambahkan!');
+                document.location.href = 'catatanForm.php'
             </script>
+           
            ";
        }
 
     }
 
 ?>
-
 
 <!DOCTYPE html>
 
@@ -107,11 +104,11 @@ if( !isset($_SESSION["login"]) ){
             h3{
                 color: #3E4155;
             }
-            .form-plan{
+            .form-note{
                 width: 1035px;
             }  
             
-            .form-plan label{
+            .form-note label{
                 font-size: 14px;
                 font-weight: 400;
                 letter-spacing: 0.05em;
@@ -123,6 +120,19 @@ if( !isset($_SESSION["login"]) ){
                 margin: 10px 0;
                 border-radius: 10px;
                 border: 1px solid rgba(179, 188, 245, 0.7);
+            }
+
+            .field-input select{
+                width: 1015px;
+                height:40px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background: none;
+                outline: none;
+                border: none;
+                font-family: 'Montserrat', sans-serif;
+                letter-spacing: 0.05em;
+                color:  #3E4155;
             }
 
             .field-input input{
@@ -140,7 +150,7 @@ if( !isset($_SESSION["login"]) ){
 
 
             @media screen and (max-width: 1024px){
-                .form-plan{
+                .form-note{
                     width: 880px;
                 }
     
@@ -153,10 +163,15 @@ if( !isset($_SESSION["login"]) ){
                     height: 40px;
                 }
 
+                .field-input select{
+                 width: 860px;
+                height:40px;
+                }
+
             }
 
             @media screen and (max-width: 768px){
-                .form-plan{
+                .form-note{
                     width: 645px;
                 }
 
@@ -168,12 +183,16 @@ if( !isset($_SESSION["login"]) ){
                     width: 625px;
                     height: 40px;
                 }
+                .field-input select{
+                    width: 625px;
+                    height:40px;
+                }
             }
             @media screen and (max-width: 600px){
                 h3 {
                     font-size: 16px;
                 }
-                .form-plan{
+                .form-note{
                     width: 450px;
                 }
     
@@ -184,6 +203,11 @@ if( !isset($_SESSION["login"]) ){
                 .field-input input{
                     width: 430px;
                     height: 40px;
+                }
+
+                .field-input select{
+                    width: 430px;
+                    height:40px;
                 }
             }
 
@@ -215,13 +239,13 @@ if( !isset($_SESSION["login"]) ){
                                    </span>
                                <br>
                                </a></li>
-                               <li><a href="../catatanList.php">
+                               <li><a href="../catatanList" class="active">
                                    <span class="menu-icon"><i class="fas fa-book-open fa-2x"></i></span>
                                    <span class="menu-desk">
                                        Catatan keuangan
                                    </span>
                                </a></li>
-                               <li><a href="../renKeuangan.php" class="active">
+                               <li><a href="../renKeuangan.php">
                                    <span class="menu-icon"><i class="fas fa-tasks fa-2x"></i></span>
                                    <span class="menu-desk">
                                    Rencana keuangan
@@ -252,7 +276,7 @@ if( !isset($_SESSION["login"]) ){
                    <div class="header">
                        <div class="menu-button"> <i class="fas fa-bars"></i> </div>
                        <div class="title-page">
-                           <p>Rencana Keuangan</p>
+                           <p>Catatan Keuangan</p>
                        </div>
                        <div class="profile">
                            <img src="../../../image/man.svg">
@@ -262,28 +286,31 @@ if( !isset($_SESSION["login"]) ){
    
                        <!--Main contain of page-->
                    <div class="main-container">
-                        <button class="back"><a href="../renKeuangan.php">Kembali</a></button> <br><br><br>
-                        <h3>Edit Rencana Keuangan<h3>
-                        <br><br>    
-                        <form class="form-plan" action="" method="post">
-                        <input class="input" type="hidden" name="id-rencana" id="id-rencana" required value="<?= $rencana["id_rencana"]; ?>">
-                                    <label for="n-target">Nama rencana</label><br>
+                        <button class="back"><a href="../catatanList.php">Kembali</a></button> <br><br><br>
+                        <h3>Tambah Catatan Keuangan <h3>
+                        <br><br>
+                        <form class="form-note" action="" method="post">
+                                    <label for="tanggal">Tanggal</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="n-target" id="n-target" placeholder="mis. Dana darurat" required value="<?= $rencana["n_rencana"]; ?>">
+                                        <input class="input" type="date" name="tanggal"  id="tanggal" placeholder="mis. 01-03-2021" required>
                                     </div>
-                                    <label for="j-target">Nominal target</label><br>
+                                    <label for="jenis">Jenis</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="j-target" id="j-target" placeholder="mis. 11000000" required value="<?= $rencana["n_target"]; ?>">
+                                        <select class="input" type="text" name="jenis" id="jenis" placeholder="Pemasukan" required>
+                                            <option value="Pemasukan">Pemasukan</option>
+                                            <option value="Pengeluaran">Pengeluaran</option>
+                                        </select>
                                     </div>
-                                    <label for="n-skrg">Nominal sekarang</label><br>
+                                    <label for="nominal">Nominal</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="text" name="n-skrg" id="n-skrg" placeholder="mis. 2000000" required value="<?= $rencana["n_skrg"]; ?>">
+                                        <input class="input" type="text" name="nominal" id="nominal" placeholder="mis. 11000000" required>
                                     </div>
-                                    <label for="t-target">Tenggat waktu</label><br>
+                                    <label for="keterangan">Keterangan</label><br>
                                     <div class="field-input">
-                                        <input class="input" type="date" name="t-target"  id="t-target" placeholder="mis. 01-03-2021" required value="<?= $rencana["t_target"]; ?>">
+                                        <input class="input" type="text" name="keterangan" id="keterangan" placeholder="mis. Belanja bulanan" required>
                                     </div>
-                                        <button class="button" name ="submit" type="submit">Edit</button>
+                                    
+                                        <button class="button" name ="submit" type="submit">Tambah</button>
                         </form>
                         
                    </div>
