@@ -48,6 +48,10 @@ if( !isset($_POST["submit"])){
                 background-color:#1a234d;
                 color: #F4F5FA;
             }
+
+            .hasilCek p{
+                margin-bottom: 15px;
+            }
         </style>
         <script src="https://kit.fontawesome.com/e9a1d9dd4b.js" crossorigin="anonymous"></script>
     </head>
@@ -123,7 +127,6 @@ if( !isset($_POST["submit"])){
                    <div class="main-container">
                         <div class="form-container">
                             <div class="tanggungan">
-                                
                                 <form class="cek-form">
                                     <h4>Kekayaan</h4><br><br>
                                     <label for="j-pendapatan">Jumlah pendapatan</label><br>
@@ -159,12 +162,53 @@ if( !isset($_POST["submit"])){
                                     </div>
                                     <button class="button" name="submit" type ="submit">Cek</button>
                                 </form>
+                                <br><br><br><br><br><br><br><br>
+                                <div class="hasilCek">
+                                <h4>Hasil cek </h4>
+                                <br><br>
+                                <?php
+                                    if(isset($_GET['submit'])){
+                                        $pendapatan = $_GET['j-pendapatan'];
+                                        $tabungan = $_GET['j-tabungan'];
+                                        $pengeluaran = $_GET['j-pengeluaran'];
+                                        $tabunganbulan = $_GET['j-tabunganbulan'];
+                                        $tanggungan = $_GET['j-tanggungan'];
+                                        rlikuiditas($tabungan, $pengeluaran, $tanggungan) ; 
+                                        rtabungan($pendapatan, $tabunganbulan);
+                                    }
+
+                                    function rlikuiditas($tabungan, $pengeluaran, $tanggungan){
+                                            $darurat= $pengeluaran * $tanggungan * 6;
+
+                                            if($darurat < $tabungan){
+                                                echo "Rasio likuiditas anda sudah ideal <br> 
+                                                karena telah memenuhi nilai dana darurat";
+                                            } else{
+                                                echo "Rasio likuiditas anda belum ideal <br> 
+                                                karena belum memenuhi nilai dana darurat <br>" ; 
+                                                echo "Dana darurat yang harus dipenuhi : ". $darurat;
+                                            }   
+                                    }
+
+                                    function rtabungan($pendapatan, $tabunganbulan){
+                                        $rtabungan= $tabunganbulan / $pendapatan;
+                                        echo "<br><br> Rasio tabungan anda : ". $rtabungan;
+                                        if($rtabungan >= 0.2){
+                                            echo " <br> Rasio tabungan anda sudah ideal";
+                                        } else {
+                                            echo " <br> Rasio tabungan anda belum ideal";
+                                        }
+                                    }
+                                
+                                ?>
+                            
+                                </div>
                             </div>
                         </div>
 
                         <div>
                             <div>
-
+                               
                             </div>
                         </div>
                    </div>

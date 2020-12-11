@@ -12,6 +12,7 @@ require '../../aplikasi/berandaController.php';
 
 //$id_pengguna = $_SESSION['email'];
 
+$catatan = query("SELECT * FROM catatan LIMIT 7");
 $rencana = query("SELECT * FROM rencana LIMIT 3");
 $artikel = query("SELECT * FROM artikel LIMIT 3");
 
@@ -36,34 +37,37 @@ $artikel = query("SELECT * FROM artikel LIMIT 3");
             }
 
             .report{
-                display:grid;
-                grid-template-columns: auto auto auto;
+                overflow -x: auto;
+                overflow -y: auto;
                 margin-top: 30px;
             }
 
-            .element{
-                margin: 20px;
-                width: 250px;
-                height: 100px;
-                background: #202E78;
-                border-radius: 6px;
+            .catatan-list {
+                margin: 10px;
+                width: 1020px;
+                border-collapse: collapse;
+            }
+            .catatan-list a{
+                color: #3E4155;
+            }
+            .catatan-list td, .catatan-list th {
+                padding: 12px 15px;
+                border: 1px solid rgba(179, 188, 245, 0.7);
+                text-align: center;
             }
 
-            .element h5{
+            .catatan-list th {
+               background-color: #202E78;
+               color: #F4F5FA;
+            }
+
+            .catatan-list tbody tr{
                 font-size: 14px;
-                font-weight: 600;
-                color: #F4F5FA;
-                margin: 15px;
-                height: 25px;
             }
 
-            .element p{
-                font-size: 14px;
-                font-weight: 500;
-                color: #F4F5FA;
-                margin: 15px;
+            .catatan-list tbody tr:nth-child(even){
+                background-color: #f5f5f5;
             }
-
 
             .plan-list{
                 display:grid;
@@ -84,21 +88,20 @@ $artikel = query("SELECT * FROM artikel LIMIT 3");
             
 
             @media screen and (max-width: 1024px){
+                .catatan-list {
+                width: 860px;
+            }
                 .plan-card{
                 width: 271px;
             }
 
 
             @media screen and (max-width: 768px){
-                .report{
-                display:block;
-                padding: 10px;
+
+                .catatan-list {
+                width: 630px;
                 }
 
-                .element{
-                padding: 5px;
-                width : 500px;
-                }
                 .plan-list{
                 display:block;
                 }
@@ -108,11 +111,10 @@ $artikel = query("SELECT * FROM artikel LIMIT 3");
             }
             @media screen and (max-width: 600px){
                 .report{
-                display:block;
+                overflow-x: auto;
+                overflow-y: auto;
                 }
-                .element{
-                width : 300px;
-                }
+
                 .plan-list{
                 display:block;
                 }
@@ -123,9 +125,7 @@ $artikel = query("SELECT * FROM artikel LIMIT 3");
             }
 
             @media screen and (max-width: 320px){
-                .report{
-                display:block;
-                }
+                
                 .plan-list{
                 display:block;
                 }
@@ -216,18 +216,28 @@ $artikel = query("SELECT * FROM artikel LIMIT 3");
                         </div>
                          <div class= "note-element">
                              <div class="report">
-                                 <div class="element">
-                                    <h5>Saldo</h5>
-                                    <p class="balance-value">Rp. 2900000</p>
-                                 </div>
-                                 <div class="element">
-                                    <h5>Total pengeluaran</h5>
-                                    <p class="spending-value">Rp. 3100000</p>
-                                 </div>
-                                 <div class="element"> 
-                                    <h5>Pendapatan</h5>
-                                    <p class="income-value">Rp. 6000000</p>
-                                 </div>
+                             <table class="catatan-list">
+                        <thead>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Nominal</th>
+                        <th>Keterangan</th>
+                        </thead>
+                        <tbody>
+                        <?php $i = 1; ?>
+                        <?php foreach($catatan as $cat) : ?>
+                        <tr>
+                            <td data-label ="No"><?= $i ?></td>
+                            <td data-label ="Tanggal"><?= $cat["tanggal_cat"] ?></td>
+                            <td data-label ="Jenis"><?= $cat["jenis"] ?></td>
+                            <td data-label ="Nominal"><?= $cat["nominal"] ?></td>
+                            <td data-label ="Keterangan"><?= $cat["keterangan"] ?></td>
+                        </tr>
+                        <?php $i++ ?>
+                        <?php  endforeach; ?>
+                        </tbody>
+                   </table>
                              </div>
                        </div>
                     <div class="finance-plan">
