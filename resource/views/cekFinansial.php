@@ -156,7 +156,7 @@ if( !isset($_POST["submit"])){
                                             <option value="Berkeluarga">Berkeluarga</option>
                                         </select>
                                     </div>
-                                    <label for="j-tanggungan">Jumlah orang yang tanggungan</label><br>
+                                    <label for="j-tanggungan">Jumlah orang yang ditanggung</label><br>
                                     <div class="field-input">
                                         <input class="input" type="text" name="j-tanggungan" placeholder="mis. 1">
                                     </div>

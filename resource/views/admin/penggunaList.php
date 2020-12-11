@@ -15,7 +15,7 @@ $users = query("SELECT * FROM pengguna");
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Artikel-Digikas</title>
+        <title>Pengguna-Digikas</title>
         <link rel="stylesheet" href="../../../css/artikelStyle.css" type="text/css">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

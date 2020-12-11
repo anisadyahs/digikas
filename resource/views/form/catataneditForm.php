@@ -41,7 +41,7 @@ if( !isset($_SESSION["login"]) ){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../../css/renkeuanganStyle.css" type="text/css">
-        <title>RencanaKeuangan-Digikas</title> 
+        <title>CatatanKeuangan-Digikas</title> 
         <script src="https://kit.fontawesome.com/e9a1d9dd4b.js" crossorigin="anonymous"></script>
         <style>
 
@@ -290,7 +290,7 @@ if( !isset($_SESSION["login"]) ){
                        <!--Main contain of page-->
                    <div class="main-container">
                         <button class="back"><a href="../catatanList.php">Kembali</a></button> <br><br><br>
-                        <h3>Tambah Catatan Keuangan <h3>
+                        <h3>Edit Catatan Keuangan <h3>
                         <br><br>  
                         <form class="form-note" action="" method="post">
                         <input class="input" type="hidden" name="id-catatan" id="id-catatan" required value="<?= $catatan["id_catatan"]; ?>">  

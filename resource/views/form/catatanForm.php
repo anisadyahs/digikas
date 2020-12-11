@@ -38,7 +38,7 @@ if( !isset($_SESSION["login"]) ){
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../../css/renkeuanganStyle.css" type="text/css">
-        <title>RencanaKeuangan-Digikas</title> 
+        <title>CatatanKeuangan-Digikas</title> 
         <script src="https://kit.fontawesome.com/e9a1d9dd4b.js" crossorigin="anonymous"></script>
         <style>
 
