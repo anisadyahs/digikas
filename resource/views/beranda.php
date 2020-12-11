@@ -12,7 +12,7 @@ require '../../aplikasi/berandaController.php';
 
 //$id_pengguna = $_SESSION['email'];
 
-$catatan = query("SELECT * FROM catatan LIMIT 7");
+$catatan = query("SELECT * FROM catatan LIMIT 6");
 $rencana = query("SELECT * FROM rencana LIMIT 3");
 $artikel = query("SELECT * FROM artikel LIMIT 3");
 
